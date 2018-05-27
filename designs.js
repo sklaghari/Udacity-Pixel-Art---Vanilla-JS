@@ -1,10 +1,29 @@
 let canvas = document.getElementById("pixelCanvas");
 
-// when submit button is clicked page will not refresh
-// if there's a canvas already, it'll be erased
-// function that makes the grid is envoked
+// When submit button is clicked page will not refresh
+// If there's a canvas already, it'll be erased
+// Function to makes the canvas/table is envoked
 document.getElementById("submit").addEventListener("click",(e)=>{
 	e.preventDefault();
 	canvas.innerHTML = "";
 	makeGrid();
 });
+
+// function that makes the canvas/table
+let makeGrid = ()=>{
+	let height = document.getElementById("inputHeight").value;
+	const tableRow = document.createElement("tr");
+	while(height>0) {
+		canvas.appendChild(tableRow.cloneNode(true));
+		height--;
+	}
+
+	let width = document.getElementById("inputWidth").value;
+	const tableColumn = document.createElement("td");
+	let allTheRows = document.querySelectorAll("tr");
+	allTheRows.forEach(function(x,y){
+		for(var i=0; i<width; i++){
+			allTheRows[y].appendChild(tableColumn.cloneNode(true));
+		}
+	});
+}
